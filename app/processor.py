@@ -23,7 +23,7 @@ def load_data() -> pd.DataFrame | None:
     return None
     
 def validade_datas(df=load_data()):
-    print(type(df))
+
     if df is not None:
         total_titles = len(df)
         years = df['release_year'].unique()
