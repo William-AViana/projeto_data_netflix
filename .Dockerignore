@@ -1,0 +1,21 @@
+# Ambientes virtuais e pacotes
+venv/
+.venv/
+env/
+__pycache__/
+*.pyc
+
+# Arquivos de configuração/segurança
+.env
+.git
+.gitignore
+
+# Documentação e testes
+docs/
+tests/
+README.md
+
+# Logs e IDEs
+*.log
+.vscode/
+.idea/
