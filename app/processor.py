@@ -22,8 +22,8 @@ def load_data() -> pd.DataFrame | None:
         return all_data_frame
     return None
     
-def validade_datas(df=load_data()):
-
+def validade_datas(load_data):
+    df = load_data()
     if df is not None:
         total_titles = len(df)
         years = df['release_year'].unique()
@@ -32,3 +32,24 @@ def validade_datas(df=load_data()):
                 "period": f"{np.min(years)} - {np.max(years)}"
             }
     return {"error": "Datas is not find"}
+
+
+def process_clean_data():
+    df = load_data()
+    df['country'] = df['country'].fillna('Unknown')
+    df['date_added'] = pd.to_datetime(df['date_added'].str.strip(), format='%B %d %Y', errors='coerce')
+    df['year_added'] = df['date_added'].dt.year
+    return df
+
+def duration_analiser(df):
+    films = df[df['type'] == 'Movie'].copy()
+    
+    durations = films['duration'].str.extract(r'(\d+)').astype(float).values
+    
+    stats = {
+        "mean": float(np.mean(durations)),
+        "max": float(np.max(durations)),
+        "min": float(np.min(durations)),
+        "median": float(np.median(durations))
+        }
+    return stats
