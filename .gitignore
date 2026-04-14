@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Configurações do VS Code
+.vscode/
+# ignore apenas o histórico local se quiser manter as configurações de debug:
+.vscode/project-history/
