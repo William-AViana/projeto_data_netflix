@@ -1,10 +1,15 @@
 from flask import request, jsonify
-from processor import process_clean_data, duration_analiser
+from app.processor import process_clean_data, duration_analiser
 from app import app
 
 df_netflix = process_clean_data()
 
-@app.route('/', methods=['GET'])
+@app.route('/',methods=['GET'])
+def get_home():
+    return '<h1>Hello World</h1>'
+
+
+@app.route('/stats', methods=['GET'])
 def get_statistics():
     country = request.args.get('country')
     
@@ -19,4 +24,3 @@ def get_statistics():
             "country_analysed": country if country else "Global",
             "metrics": result
         })
-    
